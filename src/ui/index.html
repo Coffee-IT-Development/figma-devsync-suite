@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="./tmp/figma-plugin-ds.css"> <!-- Figma Plugin DS Styles -->
+        <link rel="stylesheet" href="./tmp/styles.css"> <!-- Your Styles -->
+    </head>
+    <body>
+
+    <div class="tab-bar">
+        <button id="tab-1" class='button tab-button' onclick='nav(1)'>All keys</button>
+        <button id="tab-2" class='button tab-button' onclick='nav(2)'>Add keys</button>
+        <button id="tab-3" class='button' onclick='nav(3)'>3</button>
+    </div>
+    <div class="tab-container">
+        <div class="tab-content">
+            <div id="all_keys"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+
+            <!-- Buttons -->
+            <div class="footer">
+                <div class="flex p-xxsmall mb-xsmall">
+                    <button id="export" class='button button--primary float-right' onclick='exportFile()'>Export</button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="add_keys"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+
+            <!-- Buttons -->
+            <div class="footer">
+                <div class="flex p-xxsmall mb-xsmall">
+                    <button id="add" class='button button--primary float-right' onclick='renameTextLayers()'>Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="textlayers"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+
+           
+        </div>
+    </div>
+
+    <a id="downloadAnchorElem" style="display:none"></a>
+    <script src="./tmp/scripts.js"></script>
+    </body>
+</html>
