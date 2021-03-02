@@ -7,7 +7,7 @@
 .all_keys_list{
     list-style-type: none;
     padding: 0;
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 .input__field, .input__field:placeholder-shown {
@@ -57,6 +57,11 @@ textarea{
 .entry{
     height: 128px;
     padding-top: 12px;
+
+    .icon-button{
+        position: absolute;
+        margin-top: 64px;
+    }
 }
 
 .add_checkbox{
@@ -84,6 +89,7 @@ textarea{
 #tab-1
 {
     float:left;
+    margin-left: 8px;
 }
 #tab-2
 {
@@ -197,7 +203,8 @@ textarea{
     color: #000;
     background-color: #fff;
     font-size: 11px;
-    padding-top: 8px
+    height: 38px;
+    padding: 8px 8px 6px 8px;
 }
 
 .button:hover{
@@ -206,7 +213,7 @@ textarea{
 
 .entry-all{
 
-    padding: 12px 12px;
+    padding: 0px 8px;
     min-height: 40px;
     margin-left: 6px;
     margin-right: 6px;
@@ -218,6 +225,9 @@ textarea{
         float: left;
         width: 140px;
         margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px 0px;
     }
     
     h6{
@@ -225,11 +235,16 @@ textarea{
         font-weight: 400;
         float: left;
         margin: 0;
+        width: 208px;
+        margin-left: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px 0px;
     }
 
     .icon{
         float: right;
-        margin-top: -8px;
+        margin-top: 0px;
         display: none;
     }
 
@@ -250,4 +265,14 @@ textarea{
 .float-right{
     margin-left: auto;
     margin-right: 6px;
+}
+
+tr{
+    text-align: left;
+    vertical-align: top;
+}
+
+.notifications-tab {
+    background-color: #F4F4F4;
+    height: 100%;
 }

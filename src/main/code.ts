@@ -17,6 +17,10 @@ figma.ui.onmessage = msg => {
 		figma.currentPage.selection = nodes;
 	}
 
+	if (msg.type === 'cancel') {
+		figma.closePlugin();
+	}
+
 	if (msg.type === 'sync') {
 		const nodes = initialSelection.reduce((total, selectionNode) => 
 			[...total, ...selectionNode.findAll(node => node.type === 'TEXT') as TextNode[]]
