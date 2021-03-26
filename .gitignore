@@ -46,3 +46,5 @@ buck-out/
 !debug.keystore
 
 dist/
+
+src/main/code.js
