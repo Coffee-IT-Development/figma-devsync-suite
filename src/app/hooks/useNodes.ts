@@ -4,13 +4,14 @@ export const useNodes = () => {
   const [nodes, setNodes] = useState<
     Array<TextNode & { name: string; characters: string }>
   >();
-  const [uniqueNodes, setUniqueNodes] = useState();
+  const [uniqueNodes, setUniqueNodes] = useState<
+    Array<TextNode & { name: string; characters: string }>
+  >();
 
   useEffect(() => {
     window.onmessage = (event) => {
       if (event.data.pluginMessage.type === "textlayers") {
         const newNodes = event.data.pluginMessage.nodes;
-        console.log(newNodes);
         setNodes(newNodes);
         setUniqueNodes(
           newNodes.filter(

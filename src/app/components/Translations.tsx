@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { Entry } from "./Entry";
 
-export const Translations = ({ uniqueNodes }) => {
+export const Translations = ({ uniqueNodes, nodes }) => {
   const unsorted_keys = uniqueNodes.filter(
     (node) => node.name !== "#" && node.name?.startsWith("#")
   );
@@ -13,7 +13,7 @@ export const Translations = ({ uniqueNodes }) => {
   return (
     <KeyList>
       {sorted_keys.forEach((node) => {
-        return <Entry node={node} />;
+        return <Entry node={node} nodes={nodes} />;
       })}
     </KeyList>
   );

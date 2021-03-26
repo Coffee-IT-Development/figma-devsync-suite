@@ -149,11 +149,11 @@ const TabBar = styled.div`
   padding: 8px;
 `;
 
-const TabContainer = styled.div`
-  margin-top: 40px;
-`;
+const TabContainer = styled.div``;
 
-const Tab = styled.div``;
+const Tab = styled.div`
+  width: 100%;
+`;
 
 const TabButton = styled.div`
   color: #000;

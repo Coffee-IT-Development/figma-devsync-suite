@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-export const Entry = ({ node }) => {
+export const Entry = ({ node, nodes }) => {
   const focusNodes = (name, content) => {
     const ids = nodes
       .filter((n) => n.name === name && n.characters === content)
@@ -43,9 +43,21 @@ export const Entry = ({ node }) => {
   };
 
   return (
-    <div>
+    <Row onClick={() => focusNodes(node.name, node.characters)}>
       <h5>{node.name}</h5>
       <h6>{node.characters}</h6>
-    </div>
+      <div
+        className="icon icon--trash"
+        onClick={() => deleteNode(node.name, node.characters)}
+      ></div>
+    </Row>
   );
 };
+
+const Row = styled.div`
+  cursor: pointer;
+
+  &:hover {
+    background-color: #18a0fb;
+  }
+`;
