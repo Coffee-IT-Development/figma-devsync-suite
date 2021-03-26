@@ -3,7 +3,6 @@ import React from "react";
 import { Icon } from "react-figma-plugin-ds";
 
 export const Entry = ({ node, nodes }) => {
-  console.log(node);
   const focusNodes = (name, content) => {
     const ids = nodes
       .filter((n) => n.name === name && n.characters === content)

@@ -5,7 +5,7 @@
 Developed by Coffee IT
 
 ## Intro
-DevSync Translate will be the first of many Figma plugins that Coffee IT is developing to improve the hand off process between developers and designers. This plugin is focussed on creating the translation keys inside your Figma file. This way the development team has all the translation keys ready once they start developing.
+DevSync Translate will be the first of many Figma plugins that Coffee IT is developing to improve the hand off process between developers and designers. This plugin is focused on creating the translation keys inside your Figma file. This way the development team has all the translation keys ready once they start developing.
 
 ## Current features
 * Easily add translation keys to all text layers
