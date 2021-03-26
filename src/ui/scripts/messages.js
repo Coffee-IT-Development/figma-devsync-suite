@@ -16,13 +16,20 @@ function addAllKeysHtml(nodes) {
 
   let html = '<ul class="all_keys_list">';
 
-  nodes.filter(node => node.name !== '#' && node.name?.startsWith('#')).forEach(node => {
+  var unsorted_keys = nodes.filter(node => node.name !== '#' && node.name?.startsWith('#'));
+  var sorted_keys = unsorted_keys.sort((a, b) => a.name.localeCompare(b.name) );
+
+  sorted_keys.forEach(node => {
     const id = node.id.replace(':', '-');
     html += `
     <li class="entry-all" onclick="focusNodes('${node.name}', '${node.characters}')" id="${id}">
-        <h5>${node.name}</h5>
-        <h6>${node.characters}</h6>
-        <div class="icon icon--trash" onclick="deleteNode('${node.name}', '${node.characters}')"></div>
+    <table>  
+      <tr>  
+        <th><h5>${node.name}</h5></th>
+        <th><h6>${node.characters}</h6></th>
+        <th><div class="icon icon--trash" onclick="deleteNode('${node.name}', '${node.characters}')"></div></th>
+      </tr>
+    </table>
     </li>`;
   });
   html += '</ul>';
@@ -33,14 +40,19 @@ function addAddKeysHtml(nodes) {
   const add_keys = document.querySelector('#add_keys');
 
   let html = '<ul class="add_keys_list">';
+  var i = 0;
 
-  nodes.filter(node => node.name === '#' || !node.name?.startsWith('#')).forEach(node => {
+  nodes.filter(node => node.name === '#' || !node.name?.startsWith('#')).filter(node => node.name === '#' || !node.name?.startsWith('!')).forEach(node => {
     const id = node.id.replace(':', '-');
+    const idIgnore = node.id.replace(':', '_').replace(';', '_').replace(':', '_');
     html += `
     <li class="entry" id="${id}">
       <div class="checkbox add_checkbox">
         <input id="checkbox-${id}" type="checkbox" class="checkbox__box" />
         <label for="checkbox-${id}" class="checkbox__label"></label>
+        <div class="icon-button" onClick="toggleIgnore('ignoreicon${idIgnore}', '${node.name}', '${node.characters}')">
+          <div id="ignoreicon${idIgnore}" class="icon icon--visible"></div>
+        </div>
       </div>
       <div class="add_inputs">
         <div class="input input--with-icon add_layer_name">

@@ -11,8 +11,8 @@
     <body>
 
     <div class="tab-bar">
-        <button id="tab-1" class='button tab-button' onclick='nav(1)'>All keys</button>
-        <button id="tab-2" class='button tab-button' onclick='nav(2)'>Add keys</button>
+        <button id="tab-1" class='button tab-button tab1' onclick='nav(1)'>All keys</button>
+        <button id="tab-2" class='button tab-button tab2' onclick='nav(2)'>Add keys</button>
         <button id="tab-3" class='button' onclick='nav(3)'>3</button>
     </div>
     <div class="tab-container">
@@ -32,12 +32,12 @@
             <!-- Buttons -->
             <div class="footer">
                 <div class="flex p-xxsmall mb-xsmall">
-                    <button id="add" class='button button--primary float-right' onclick='renameTextLayers()'>Add</button>
+                    <button id="add" class='button button--primary float-right' onclick='renameTextLayers(); nav(1)'>Add</button>
                 </div>
             </div>
         </div>
-        <div class="tab-content">
-            <div id="textlayers"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+        <div class="tab-content notifications-tab">
+            <div id="notifications"><div></div><div></div><div></div><div></div></div></div>
 
            
         </div>

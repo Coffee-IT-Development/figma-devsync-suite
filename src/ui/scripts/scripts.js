@@ -74,8 +74,40 @@ function check(id, value) {
     document.querySelector(`#checkbox-${id}`).checked = !!value;
 };
 
+function toggleIgnore(id, name, content) {
+    var element = document.getElementById(id);
+
+    if(element.classList.contains("icon--visible")){
+        element.classList.add('icon--hidden');
+        element.classList.remove('icon--visible');
+        const entries = nodes
+        .filter(n => n.name === name && n.characters === content)
+        .map(n => ({ id: n.id, value: '!ignore' }));
+
+        parent.postMessage({ pluginMessage: { 
+            type: 'rename-textlayers',
+            nodesToRename: entries
+        } }, '*');
+    } else {
+        element.classList.add('icon--visible');
+        element.classList.remove('icon--hidden');
+        const entries = nodes
+        .filter(n => n.name === name && n.characters === content)
+        .map(n => ({ id: n.id, value: 'Ready to rename layers' }));
+
+        parent.postMessage({ pluginMessage: { 
+            type: 'rename-textlayers',
+            nodesToRename: entries
+        } }, '*');
+    }
+    
+};
+
 function nav(selected) {
     const tabs = document.querySelector('.tab-container').children;
+    const tab1 = document.querySelector('#tab-1');
+    const tab2 = document.querySelector('#tab-2');
+
     if (tabs[selected - 1].style.display === 'block') return;
 
     for (let tab of tabs) {
@@ -83,7 +115,24 @@ function nav(selected) {
     }
     tabs[selected - 1].style.display = 'block';
 
+    switch(selected) {
+        case 1:
+            tab1.style.opacity = '1';
+            tab2.style.opacity = '0.3';
+            break;
+        case 2:
+            tab1.style.opacity = '0.3';
+            tab2.style.opacity = '1';
+            break;
+        case 3:
+            tab1.style.opacity = '0.3';
+            tab2.style.opacity = '0.3';
+            break;
+    }
+
     parent.postMessage({ pluginMessage: { 
         type: 'sync',
     } }, '*');
 };
+
+
