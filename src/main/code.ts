@@ -8,15 +8,18 @@ figma.ui.onmessage = msg => {
 		msg.nodesToRename.forEach((nodeToRename: { id: string, value: string }) => {
 			const node = figma.currentPage.findOne(n => n.id === nodeToRename.id);
 			node.name = nodeToRename.value;
-			node.setPluginData("Test", "Test");
+			node.setPluginData('MyPluginData', "kebxkqjdbqk");
+			const x = node.getPluginData('MyPluginData');
+			console.log(x)
 		});
+	
 	}
 
 	if (msg.type === 'focus-node') {
 		const nodes = figma.currentPage.findAll(n => msg.ids.includes(n.id));
 		figma.viewport.scrollAndZoomIntoView(nodes);
 		figma.currentPage.selection = nodes;
-		console.log(nodes);
+		// console.log(nodes);
 	}
 
 	if (msg.type === 'cancel') {
