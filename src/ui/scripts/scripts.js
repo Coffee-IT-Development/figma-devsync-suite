@@ -74,14 +74,15 @@ function check(id, value) {
     document.querySelector(`#checkbox-${id}`).checked = !!value;
 };
 
-function toggleIgnore(id, name, content) {
-    var element = document.getElementById(id);
+function toggleIgnore(id) {
+    const elementId = id.split('ignoreicon')[1];
+    const element = document.getElementById(id);
 
-    if(element.classList.contains("icon--visible")){
-        element.classList.add('icon--hidden');
-        element.classList.remove('icon--visible');
+
+    if(element.classList.contains("icon--visible")) {
+        element.classList.replace('icon--visible', 'icon--hidden')
         const entries = nodes
-        .filter(n => n.name === name && n.characters === content)
+        .filter(n => n.id === elementId)
         .map(n => ({ id: n.id, value: '!ignore' }));
 
         parent.postMessage({ pluginMessage: { 
@@ -89,10 +90,9 @@ function toggleIgnore(id, name, content) {
             nodesToRename: entries
         } }, '*');
     } else {
-        element.classList.add('icon--visible');
-        element.classList.remove('icon--hidden');
+        element.classList.replace('icon--hidden', 'icon--visible')
         const entries = nodes
-        .filter(n => n.name === name && n.characters === content)
+        .filter(n => n.id === elementId)
         .map(n => ({ id: n.id, value: 'Ready to rename layers' }));
 
         parent.postMessage({ pluginMessage: { 
@@ -102,6 +102,12 @@ function toggleIgnore(id, name, content) {
     }
     
 };
+
+function showIgnore() {
+    parent.postMessage({ pluginMessage: { 
+        type: 'sync',
+    } }, '*');
+}
 
 function nav(selected) {
     const tabs = document.querySelector('.tab-container').children;
