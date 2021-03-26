@@ -88,9 +88,6 @@ const App = ({}) => {
         <TabButton onClick={() => nav(2)} isActive={selectedTab === 2}>
           Add keys
         </TabButton>
-        <TabButton onClick={() => nav(3)} isActive={selectedTab === 3}>
-          3
-        </TabButton>
       </TabBar>
       <TabContainer>
         {selectedTab === 1 && (
