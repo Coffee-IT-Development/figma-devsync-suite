@@ -29,7 +29,6 @@ function focusNodes(name, content) {
     const ids = nodes
         .filter(n => n.name === name && n.characters === content)
         .map(n => n.id.replace('-', ':'));
-
     parent.postMessage({ pluginMessage: { 
         type: 'focus-node',
         ids,
@@ -46,7 +45,7 @@ function renameTextLayers() {
         const content = entry.children[1].children[2].value;
         if (checkbox.checked && value) {
             nodes.filter(n => n.name === name && n.characters === content).forEach(n => {
-                nodesToRename.push({ id: n.id, value: '#' + value });
+                nodesToRename.push({ id: n.id, value: '#' + value });z
             });
         }
     }
