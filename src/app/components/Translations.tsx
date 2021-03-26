@@ -12,16 +12,15 @@ export const Translations = ({ uniqueNodes, nodes }) => {
 
   return (
     <KeyList>
-      {sorted_keys.forEach((node) => {
-        return <Entry node={node} nodes={nodes} />;
-      })}
+      {sorted_keys.map((node) => (
+        <Entry node={node} nodes={nodes} />
+      ))}
     </KeyList>
   );
 };
 
 const KeyList = styled.ul`
   list-style-type: none;
-  padding: 0;
   margin-top: 8px;
-  background-color: red;
+  padding: 10px;
 `;

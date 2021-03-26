@@ -107,7 +107,7 @@ export const AddKeysList = ({ nodes }) => {
                     <div className="icon icon--frame" />
                     <input
                       className="input__field"
-                      value="${node.name}"
+                      value={node.name}
                       disabled
                     />
                   </div>

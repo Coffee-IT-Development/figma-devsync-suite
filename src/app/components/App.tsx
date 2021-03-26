@@ -142,6 +142,7 @@ const Container = styled.div`
 
 const TabBar = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
@@ -159,7 +160,6 @@ const TabButton = styled.div`
   color: #000;
   background-color: #fff;
   font-size: 11px;
-  height: 38px;
   padding: 8px 8px 6px 8px;
 `;
 

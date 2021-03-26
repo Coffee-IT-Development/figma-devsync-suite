@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { Icon } from "react-figma-plugin-ds";
 
 export const Entry = ({ node, nodes }) => {
   console.log(node);
@@ -45,21 +46,36 @@ export const Entry = ({ node, nodes }) => {
 
   return (
     <Row onClick={() => focusNodes(node.name, node.characters)}>
-      <h5>{node.name}</h5>
-      <h6>{node.characters}</h6>
-      <div
-        className="icon icon--trash"
+      <span className="name">{node.name}</span>
+      <span>{node.characters}</span>
+      <Trash
+        name="trash"
         onClick={() => deleteNode(node.name, node.characters)}
-      ></div>
+      />
     </Row>
   );
 };
 
 const Row = styled.div`
   cursor: pointer;
-  background-color: red;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+
+  .name {
+    font-weight: bold;
+    width: 30%;
+  }
 
   &:hover {
-    background-color: #18a0fb;
+    background-color: #18a0fb24;
   }
+`;
+
+const Trash = styled(Icon)`
+  cursor: pointer;
+  margin-left: auto;
 `;
