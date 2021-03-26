@@ -21,6 +21,7 @@ export const Translations = ({ uniqueNodes, nodes }) => {
 
 const KeyList = styled.ul`
   list-style-type: none;
-  margin-top: 8px;
+  margin-top: 0px;
   padding: 10px;
+  text-overflow: ellipsis;
 `;
