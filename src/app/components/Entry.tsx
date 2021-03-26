@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 
 export const Entry = ({ node, nodes }) => {
+  console.log(node);
   const focusNodes = (name, content) => {
     const ids = nodes
       .filter((n) => n.name === name && n.characters === content)
@@ -56,6 +57,7 @@ export const Entry = ({ node, nodes }) => {
 
 const Row = styled.div`
   cursor: pointer;
+  background-color: red;
 
   &:hover {
     background-color: #18a0fb;

@@ -67,7 +67,7 @@ export const AddKeysList = ({ nodes }) => {
       {nodes
         .filter((node) => node.name === "#" || !node.name?.startsWith("#"))
         .filter((node) => node.name === "#" || !node.name?.startsWith("!"))
-        .forEach((node) => {
+        .map((node) => {
           const id = node.id.replace(":", "-");
           const idIgnore = node.id
             .replace(":", "_")
