@@ -108,6 +108,9 @@ textarea{
 
 .footer {
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     bottom: 0;
     left: 0;

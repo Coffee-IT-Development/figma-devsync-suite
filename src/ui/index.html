@@ -21,9 +21,7 @@
 
             <!-- Buttons -->
             <div class="footer">
-                <div class="flex p-xxsmall mb-xsmall">
-                    <button id="export" class='button button--primary float-right' onclick='exportFile()'>Export</button>
-                </div>
+                <button id="export" class='button button--primary float-right' onclick='exportFile()'>Export</button>
             </div>
         </div>
         <div class="tab-content">
@@ -31,15 +29,15 @@
 
             <!-- Buttons -->
             <div class="footer">
-                <div class="flex p-xxsmall mb-xsmall">
-                    <button id="add" class='button button--primary float-right' onclick='renameTextLayers(); nav(1)'>Add</button>
-                </div>
+                <div class="checkbox">
+                    <input id="checkbox-ignored" type="checkbox" class="checkbox__box" onclick="showIgnore()">
+                    <label for="checkbox-ignored" class="checkbox__label">Show ignored</label>
+                </div>    
+                <button id="add" class='button button--primary float-right' onclick='renameTextLayers(); nav(1)'>Add</button>
             </div>
         </div>
         <div class="tab-content notifications-tab">
             <div id="notifications"><div></div><div></div><div></div><div></div></div></div>
-
-           
         </div>
     </div>
 

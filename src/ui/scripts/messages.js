@@ -4,7 +4,7 @@ onmessage = (event) => {
   if (event.data.pluginMessage.type === 'textlayers') {
     nodes = event.data.pluginMessage.nodes;
 
-    uniqueNodes = nodes.filter((a, i) => nodes.findIndex(b => b.name === a.name && b.characters === a.characters) === i);
+    const uniqueNodes = nodes.filter((a, i) => nodes.findIndex(b => b.name === a.name && b.characters === a.characters) === i);
 
     addAllKeysHtml(uniqueNodes);
     addAddKeysHtml(uniqueNodes);
@@ -38,20 +38,28 @@ function addAllKeysHtml(nodes) {
 
 function addAddKeysHtml(nodes) {
   const add_keys = document.querySelector('#add_keys');
+  const showIgnored = document.querySelector('#checkbox-ignored').checked;
 
   let html = '<ul class="add_keys_list">';
-  var i = 0;
 
-  nodes.filter(node => node.name === '#' || !node.name?.startsWith('#')).filter(node => node.name === '#' || !node.name?.startsWith('!')).forEach(node => {
+  function filterNodes(node) {
+    if (showIgnored) {
+      return node
+    } else {
+      return !node.name?.startsWith('!')
+    }
+  }
+
+  nodes.filter(n => !n.name?.startsWith('#')).filter(filterNodes).forEach(node => {
     const id = node.id.replace(':', '-');
-    const idIgnore = node.id.replace(':', '_').replace(';', '_').replace(':', '_');
+
     html += `
-    <li class="entry" id="${id}">
+    <li class="entry" id="${node.id}">
       <div class="checkbox add_checkbox">
         <input id="checkbox-${id}" type="checkbox" class="checkbox__box" />
         <label for="checkbox-${id}" class="checkbox__label"></label>
-        <div class="icon-button" onClick="toggleIgnore('ignoreicon${idIgnore}', '${node.name}', '${node.characters}')">
-          <div id="ignoreicon${idIgnore}" class="icon icon--visible"></div>
+        <div class="icon-button" onClick="toggleIgnore('ignoreicon${node.id}')">
+          <div id="ignoreicon${node.id}" class="icon icon--${node.name?.startsWith('!') ? 'hidden' : 'visible'}"></div>
         </div>
       </div>
       <div class="add_inputs">
