@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { Button } from "react-figma-plugin-ds";
+import { Button, Checkbox } from "react-figma-plugin-ds";
 import { useNodes } from "../hooks/useNodes";
 import { AddKeysList } from "./AddKeysList";
 import { Translations } from "./Translations";
@@ -8,12 +8,12 @@ import { Loader } from "./Loader";
 
 const App = ({}) => {
   const [selectedTab, setSelectedTab] = useState<number>(1);
+  const [showIgnored, setShowIgnored] = useState<boolean>(false);
 
   const { nodes, uniqueNodes } = useNodes();
 
   const nav = (selected) => {
     setSelectedTab(selected);
-
     parent.postMessage(
       {
         pluginMessage: {
@@ -82,9 +82,15 @@ const App = ({}) => {
   return (
     <>
       <TabBar>
-        <TabButton onClick={() => nav(1)}>Translations</TabButton>
-        <TabButton onClick={() => nav(2)}>Add keys</TabButton>
-        <TabButton onClick={() => nav(3)}>3</TabButton>
+        <TabButton onClick={() => nav(1)} isActive={selectedTab === 1}>
+          Translations
+        </TabButton>
+        <TabButton onClick={() => nav(2)} isActive={selectedTab === 2}>
+          Add keys
+        </TabButton>
+        <TabButton onClick={() => nav(3)} isActive={selectedTab === 3}>
+          3
+        </TabButton>
       </TabBar>
       <TabContainer>
         {selectedTab === 1 && (
@@ -105,10 +111,18 @@ const App = ({}) => {
         {selectedTab === 2 && (
           <Tab>
             <Container>
-              {nodes ? <AddKeysList nodes={nodes} /> : <Loader />}
+              {nodes ? (
+                <AddKeysList nodes={nodes} showIgnored={showIgnored} />
+              ) : (
+                <Loader />
+              )}
             </Container>
 
             <Footer>
+              <StyledCheckBox
+                label="Show ignored keys"
+                onChange={setShowIgnored}
+              />
               <StyledButton onClick={() => renameTextLayers()}>
                 Add
               </StyledButton>
@@ -147,7 +161,6 @@ const TabBar = styled.div`
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
   z-index: 3;
-  padding: 8px;
 `;
 
 const TabContainer = styled.div``;
@@ -156,11 +169,16 @@ const Tab = styled.div`
   width: 100%;
 `;
 
-const TabButton = styled.div`
+const TabButton = styled.div<{ isActive: boolean }>`
   color: #000;
+  opacity: ${(props) => (props.isActive ? "80%" : "30%")};
   background-color: #fff;
   font-size: 11px;
-  padding: 8px 8px 6px 8px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  cursor: pointer;
 `;
 
 const NotificationsTab = styled(Tab)`
@@ -170,17 +188,22 @@ const NotificationsTab = styled(Tab)`
 
 const Footer = styled.div`
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   bottom: 0;
   left: 0;
   background-color: #fff;
-  height: 48px;
   border-top: 1px solid #e5e5e5;
   border-radius: 0px 0px 3px 3px;
   z-index: 3;
   margin-bottom: 1px;
+  padding: 8px;
 `;
 
 const StyledButton = styled(Button)`
   float: right;
+  margin-left: auto;
 `;
+
+const StyledCheckBox = styled(Checkbox)``;
