@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "react-figma-plugin-ds";
 import { useNodes } from "../hooks/useNodes";
 import { AddKeysList } from "./AddKeysList";
-import { AllKeysList } from "./AllKeysList";
+import { Translations } from "./Translations";
 import { Loader } from "./Loader";
 
 const App = ({}) => {
@@ -82,7 +82,7 @@ const App = ({}) => {
   return (
     <>
       <TabBar>
-        <TabButton onClick={() => nav(1)}>All keys</TabButton>
+        <TabButton onClick={() => nav(1)}>Translations</TabButton>
         <TabButton onClick={() => nav(2)}>Add keys</TabButton>
         <TabButton onClick={() => nav(3)}>3</TabButton>
       </TabBar>
@@ -91,7 +91,7 @@ const App = ({}) => {
           <Tab>
             <Container>
               {uniqueNodes && nodes ? (
-                <AllKeysList uniqueNodes={uniqueNodes} nodes={nodes} />
+                <Translations uniqueNodes={uniqueNodes} nodes={nodes} />
               ) : (
                 <Loader />
               )}
