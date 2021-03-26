@@ -3,5 +3,10 @@
   "id": "936897488570234140",
   "api": "1.0.0",
   "main": "code.js",
-  "ui": "index.html"
+  "ui": "index.html",
+  "relaunchButtons": [
+    {"command": "edit", "name": "Edit translation key"},
+    {"command": "deleterelaunch", "name": "Delete translation key", "multipleSelection": true}
+  ]
 }
+

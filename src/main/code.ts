@@ -11,6 +11,7 @@ figma.ui.onmessage = msg => {
 			node.setPluginData('MyPluginData', "kebxkqjdbqk");
 			const x = node.getPluginData('MyPluginData');
 			console.log(x)
+			node.setRelaunchData({ edit: '',  deleterelaunch: '' })
 		});
 	
 	}
@@ -35,6 +36,10 @@ figma.ui.onmessage = msg => {
 			type: 'textlayers',
 			nodes: nodes.map(node => ({ ...node, name: node.name, characters: node.characters }))
 		});
+	}
+
+	if (msg.type === 'deleterelaunch') {
+		console.log("JAJAJAJA");
 	}
 };
 

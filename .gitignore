@@ -48,3 +48,5 @@ buck-out/
 dist/
 
 src/main/code.js
+
+src/ui/tmp
