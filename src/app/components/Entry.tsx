@@ -46,7 +46,7 @@ export const Entry = ({ node, nodes }) => {
   return (
     <Row onClick={() => focusNodes(node.name, node.characters)}>
       <span className="name">{node.name}</span>
-      <span>{node.characters}</span>
+      <span className="content">{node.characters}</span>
       <Trash
         name="trash"
         onClick={() => deleteNode(node.name, node.characters)}
@@ -57,20 +57,37 @@ export const Entry = ({ node, nodes }) => {
 
 const Row = styled.div`
   cursor: pointer;
-  padding: 5px;
+  min-height: 40px;
+  padding: 4px 8px;
   border-radius: 5px;
-  font-size: 14px;
-
+  font-size: 12px;
   display: flex;
-  align-items: center;
 
   .name {
     font-weight: bold;
-    width: 30%;
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 0px 8px 0px;
+  }
+
+  .content {
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 8px 8px 8px;
+  }
+
+  .icon-button {
+    display: none;
   }
 
   &:hover {
     background-color: #18a0fb24;
+  }
+
+  &:hover .icon-button {
+    display: block;
   }
 `;
 
