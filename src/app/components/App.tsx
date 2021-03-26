@@ -1,4 +1,6 @@
+import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { Button } from "react-figma-plugin-ds";
 import { useNodes } from "../hooks/useNodes";
 import { AddKeysList } from "./AddKeysList";
 import { AllKeysList } from "./AllKeysList";
@@ -79,70 +81,42 @@ const App = ({}) => {
 
   return (
     <>
-      <div className="tab-bar">
-        <button
-          id="tab-1"
-          className="button tab-button tab1"
-          onClick={() => nav(1)}
-        >
-          All keys
-        </button>
-        <button
-          id="tab-2"
-          className="button tab-button tab2"
-          onClick={() => nav(2)}
-        >
-          Add keys
-        </button>
-        <button id="tab-3" className="button" onClick={() => nav(3)}>
-          3
-        </button>
-      </div>
-      <div className="tab-container">
+      <TabBar>
+        <TabButton onClick={() => nav(1)}>All keys</TabButton>
+        <TabButton onClick={() => nav(2)}>Add keys</TabButton>
+        <TabButton onClick={() => nav(3)}>3</TabButton>
+      </TabBar>
+      <TabContainer>
         {selectedTab === 1 && (
-          <div className="tab-content">
-            <div id="all_keys">
+          <Tab>
+            <Container>
               {uniqueNodes && nodes ? (
                 <AllKeysList uniqueNodes={uniqueNodes} nodes={nodes} />
               ) : (
                 <Loader />
               )}
-            </div>
+            </Container>
 
-            <div className="footer">
-              <div className="flex p-xxsmall mb-xsmall">
-                <button
-                  id="export"
-                  className="button button--primary float-right"
-                  onClick={() => exportFile()}
-                >
-                  Export
-                </button>
-              </div>
-            </div>
-          </div>
+            <Footer>
+              <StyledButton onClick={() => exportFile()}>Export</StyledButton>
+            </Footer>
+          </Tab>
         )}
         {selectedTab === 2 && (
-          <div className="tab-content">
-            <div id="add_keys">
+          <Tab>
+            <Container>
               {nodes ? <AddKeysList nodes={nodes} /> : <Loader />}
-            </div>
+            </Container>
 
-            <div className="footer">
-              <div className="flex p-xxsmall mb-xsmall">
-                <button
-                  id="add"
-                  className="button button--primary float-right"
-                  onClick={() => renameTextLayers()}
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
+            <Footer>
+              <StyledButton onClick={() => renameTextLayers()}>
+                Add
+              </StyledButton>
+            </Footer>
+          </Tab>
         )}
         {selectedTab === 3 && (
-          <div className="tab-content notifications-tab">
+          <NotificationsTab>
             <div id="notifications">
               <div></div>
               <div></div>
@@ -150,9 +124,9 @@ const App = ({}) => {
               <div></div>
               <div></div>
             </div>
-          </div>
+          </NotificationsTab>
         )}
-      </div>
+      </TabContainer>
 
       <a id="downloadAnchorElem" />
     </>
@@ -160,3 +134,53 @@ const App = ({}) => {
 };
 
 export default App;
+
+const Container = styled.div`
+  height: 552px;
+  overflow: scroll;
+`;
+
+const TabBar = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 3;
+  padding: 8px;
+`;
+
+const TabContainer = styled.div`
+  margin-top: 40px;
+`;
+
+const Tab = styled.div``;
+
+const TabButton = styled.div`
+  color: #000;
+  background-color: #fff;
+  font-size: 11px;
+  height: 38px;
+  padding: 8px 8px 6px 8px;
+`;
+
+const NotificationsTab = styled(Tab)`
+  background-color: #f4f4f4;
+  height: 100%;
+`;
+
+const Footer = styled.div`
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  height: 48px;
+  border-top: 1px solid #e5e5e5;
+  border-radius: 0px 0px 3px 3px;
+  z-index: 3;
+  margin-bottom: 1px;
+`;
+
+const StyledButton = styled(Button)`
+  float: right;
+`;

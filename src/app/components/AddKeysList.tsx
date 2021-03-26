@@ -120,9 +120,7 @@ export const AddKeysList = ({ nodes }) => {
                       onChange={(e) => check(id, e.currentTarget.value)}
                     />
                   </div>
-                  <textarea className="textarea" rows={2}>
-                    {node.characters}
-                  </textarea>
+                  <StyledTextArea rows={2}>{node.characters}</StyledTextArea>
                 </div>
               </Entry>
               <div className="separator" />
@@ -147,4 +145,18 @@ const Entry = styled.li`
     position: absolute;
     margin-top: 64px;
   }
+`;
+
+const StyledTextArea = styled.textarea`
+  font: 400 13.3333px Arial;
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-size: 13.3333px;
+  line-height: normal;
+  font-family: Arial;
 `;

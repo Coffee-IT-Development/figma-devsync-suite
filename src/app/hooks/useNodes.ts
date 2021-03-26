@@ -10,6 +10,7 @@ export const useNodes = () => {
     window.onmessage = (event) => {
       if (event.data.pluginMessage.type === "textlayers") {
         const newNodes = event.data.pluginMessage.nodes;
+        console.log(newNodes);
         setNodes(newNodes);
         setUniqueNodes(
           newNodes.filter(

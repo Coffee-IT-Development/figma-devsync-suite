@@ -30,22 +30,22 @@ const LoaderDiv = styled.div`
     background: var(--blue);
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 
-    &:nth-child(1) {
+    &:nth-of-type(1) {
       left: 8px;
       animation: lds-ellipsis1 0.6s infinite;
     }
 
-    &:nth-child(2) {
+    &:nth-of-type(2) {
       left: 8px;
       animation: lds-ellipsis2 0.6s infinite;
     }
 
-    &:nth-child(3) {
+    &:nth-of-type(3) {
       left: 32px;
       animation: lds-ellipsis2 0.6s infinite;
     }
 
-    &:nth-child(4) {
+    &:nth-of-type(4) {
       left: 56px;
       animation: lds-ellipsis3 0.6s infinite;
     }
