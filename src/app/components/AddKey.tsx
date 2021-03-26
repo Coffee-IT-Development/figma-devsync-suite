@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { Checkbox, Icon, Input, Textarea } from "react-figma-plugin-ds";
 
-export const AddKey = ({ node }) => {
+export const AddKey = ({ node, onFocus }) => {
   const [isIgnored, setIsIgnored] = useState(!!node.name?.startsWith("!"));
 
   const toggleIgnore = () => {
     parent.postMessage(
       {
         pluginMessage: {
-          type: "rename-textlayers",
+          type: "rename-textLayers",
           nodesToRename: [
             {
               id: node.id,
@@ -24,7 +24,7 @@ export const AddKey = ({ node }) => {
   };
 
   return (
-    <Entry id={node.id}>
+    <Entry id={node.id} key={node.id}>
       <Row>
         <Checkbox label="" />
         <InputContainer first={true}>
@@ -36,7 +36,7 @@ export const AddKey = ({ node }) => {
             type="text"
           />
         </InputContainer>
-        <InputContainer>
+        <InputContainer onFocus={() => onFocus(node.name, node.characters)}>
           <Input
             placeholder=""
             defaultValue={node.name}
@@ -46,10 +46,12 @@ export const AddKey = ({ node }) => {
         </InputContainer>
       </Row>
       <Row>
-        <StyledIcon
-          onClick={() => toggleIgnore()}
-          name={isIgnored ? "hidden" : "visible"}
-        />
+        <IconContainer>
+          <Icon
+            onClick={() => toggleIgnore()}
+            name={node.name?.startsWith("!") ? "hidden" : "visible"}
+          />
+        </IconContainer>
         <TextAreaContainer>
           <StyledTextArea placeholder={node.characters} isDisabled rows={2} />
         </TextAreaContainer>
@@ -77,14 +79,17 @@ const InputContainer = styled.div<{ first?: boolean }>`
   ${(props) => props.first && `margin-right: 13px`};
 `;
 
-const StyledIcon = styled(Icon)`
-  background-color: "transparant" !important;
+const IconContainer = styled.div`
+  background-color: "transparant";
+  margin-top: auto;
 `;
 
 const TextAreaContainer = styled.div`
   display: flex;
   width: 100%;
   border: 1px solid rgb(0, 0, 0, 0.1);
+  margin-top: 6px;
+  margin-left: 16px;
 `;
 
 const StyledTextArea = styled(Textarea)`

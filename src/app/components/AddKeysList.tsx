@@ -12,13 +12,32 @@ export const AddKeysList = ({ nodes, showIgnored }: Props) => {
     .filter((n) => !n.name?.startsWith("#"))
     .filter((n) => (showIgnored ? n : !n.name?.startsWith("!")));
 
+  const focusNodes = (name, content) => {
+    const ids = nodes
+      .filter((n) => n.name === name && n.characters === content)
+      .map((n) => n.id.replace("-", ":"));
+
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "focus-node",
+          ids,
+        },
+      },
+      "*"
+    );
+  };
+
   return (
     <KeyList>
       {filteredNodes.map((node) => (
-        <>
-          <AddKey node={node} />
+        <div key={node.id}>
+          <AddKey
+            node={node}
+            onFocus={(name, content) => focusNodes(name, content)}
+          />
           <Separator />
-        </>
+        </div>
       ))}
     </KeyList>
   );
